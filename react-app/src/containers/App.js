@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import classes from './App.css';
 import Persons from "../components/Persons/Persons";
 import Cockpit from "../components/Cockpit/Cockpit";
+import WithClass from "../hoc/WithClass";
 
-class App extends Component {
+class App extends PureComponent {
   constructor(props){
     super(props);
 
@@ -18,11 +19,11 @@ class App extends Component {
     console.log("[App.js] Inside ComponentDidMount");
   }
 
-  shouldComponentUpdate(nextProps, nextState){
+  /*shouldComponentUpdate(nextProps, nextState){
     console.log("[UPDATE App.js] Inside ShouldComponentUpdate", nextProps, nextState);
     return nextProps !== this.props.persons ||
      nextProps.showPersons !== this.props.showPersons;
-  }
+  }*/
 
   componentWillUpdate(nextProps, nextState){
       console.log("[UPDATE App.js] Inside ComponentWillUpdate", nextProps, nextState);
@@ -57,7 +58,7 @@ class App extends Component {
     }
 
     return (
-      <div className={classes.App}>
+      <WithClass classes={classes.App}>
         <button onClick={() => {this.setState({showPersons: true})}}>Show Persons</button>
         <Cockpit 
           appTitle={this.props.title}
@@ -65,7 +66,7 @@ class App extends Component {
           persons={this.state.persons}
           clicked={this.togglePersonsHandler}/>
         {persons}
-      </div>
+      </WithClass>
     );
   }
 
