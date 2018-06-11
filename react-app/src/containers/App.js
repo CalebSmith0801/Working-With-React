@@ -28,6 +28,7 @@ class App extends Component {
     return (
       <div className={classes.App}>
         <Cockpit 
+          appTitle={this.props.title}
           showPersons={this.state.showPersons} 
           persons={this.state.persons}
           clicked={this.togglePersonsHandler}/>
@@ -36,7 +37,7 @@ class App extends Component {
     );
   }
 
-  deletePersonHandler(personIndex){
+  deletePersonHandler = (personIndex) => {
     //const persons = this.state.persons.slice();
     const persons = [...this.state.persons];
     persons.splice(personIndex, 1);
